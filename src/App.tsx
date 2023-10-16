@@ -1,27 +1,36 @@
-import React from 'react';
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
 import './App.css';
-
-import Navbar from './paginas/components/navBar/NavBar';
-import Footer from './paginas/components/footer/Footer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import Login from './paginas/login/Login';
-import Cadastro from './paginas/cadastro/Cadastro';
-import Home from './paginas/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import Cadastro from './paginas/cadastro/Cadastro';
+import Navbar from './paginas/components/navBar/NavBar';
+import Home from './paginas/Home';
+import Footer from './paginas/components/footer/Footer';
 import ListaTemas from './paginas/components/temas/listaTemas/ListaTemas';
 import FormularioTema from './paginas/components/temas/formularioTema/FormularioTema';
 import DeletarTema from './paginas/components/temas/deletarTema/DeletarTema';
+import ListaPostagens from './paginas/components/postagens/listaPostagens/ListaPostagens';
+import FormularioPostagem from './paginas/components/postagens/formularioPostagem/FormularioPostagem';
 
+import Perfil from './paginas/perfil/Perfil';
+import DeletarPostagem from './paginas/components/postagens/deletarPostagem/DeletarPostagem';
 
 function App() {
+  
   return (
     <>
       <AuthProvider>
+      <ToastContainer />
         <BrowserRouter>
-          <Navbar />
+        <Navbar />
           <div className='min-h-[80vh]'>
             <Routes>
-              <Route path="/" element={<Cadastro />} />
+              <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
@@ -29,6 +38,11 @@ function App() {
               <Route path="/cadastroTema" element={<FormularioTema />} />
               <Route path="/editarTema/:id" element={<FormularioTema />} />
               <Route path="/deletarTema/:id" element={<DeletarTema />} />
+              <Route path="/postagens" element={<ListaPostagens />} />
+              <Route path="/cadastroPostagem" element={<FormularioPostagem />} />
+              <Route path="/editarPostagem/:id" element={<FormularioPostagem />} />
+              <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
+              <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
           <Footer />
@@ -37,4 +51,5 @@ function App() {
     </>
   );
 }
+
 export default App;
